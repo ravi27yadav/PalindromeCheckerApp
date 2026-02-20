@@ -24,6 +24,9 @@
 
 public class PalindromeCheckerApp {
 
+
+
+
     /**
      * Application entry point for UC2.
      *
