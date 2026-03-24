@@ -1,3 +1,4 @@
+ UC6
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
@@ -32,10 +33,19 @@ public class UseCase6PalindromeCheckerApp {
     /**
      * Application entry point for UC6.
      *
+
+import java.util.Stack;
+
+public class UseCase5PalindromeCheckerApp {
+
+    /**
+     * Application entry point for UC5.
+ main
      * @param args Command-line arguments
      */
     public static void main(String[] args) {
 
+ UC6
         // Define the input string to validate
         String input = "civic";
 
@@ -60,13 +70,42 @@ public class UseCase6PalindromeCheckerApp {
             char fromStack = stack.pop();  // pop
 
             if (fromQueue != fromStack) {
+
+        // Declare and initialize the input string.
+        String input = "noon";
+
+        // Create a Stack to store characters.
+        Stack<Character> stack = new Stack<>();
+
+        // Push each character of the string into the stack.
+        for (char c : input.toCharArray()) {
+            stack.push(c);
+        }
+
+        // Assume palindrome initially.
+        boolean isPalindrome = true;
+
+        // Iterate again through original string.
+        for (char c : input.toCharArray()) {
+            // Pop from stack and compare
+            if (c != stack.pop()) {
+ main
                 isPalindrome = false;
                 break;
             }
         }
 
+ UC6
         // Output result
         System.out.println("Input : " + input);
         System.out.println("Is Palindrome? : " + isPalindrome);
+
+        // Display the result
+        if (isPalindrome) {
+            System.out.println(input + " is a palindrome.");
+        } else {
+            System.out.println(input + " is not a palindrome.");
+        }
+              main
     }
 }
