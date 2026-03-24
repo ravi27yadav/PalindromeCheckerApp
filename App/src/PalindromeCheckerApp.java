@@ -1,68 +1,77 @@
-import java.util.Deque;
-import java.util.LinkedList;
-
 /**
  * ============================================================
- * MAIN CLASS - UseCase7PalindromeCheckerApp
+ * MAIN CLASS - UseCase9RecursivePalindrome
  * ============================================================
  *
- * Use Case 7: Deque Based Optimized Palindrome Checker
+ * Use Case 9: Recursive Palindrome Checker
  *
  * Description:
- * This class validates a palindrome using a Deque
- * (Double Ended Queue).
+ * This class validates a palindrome using recursion.
  *
- * Characters are inserted into the deque and then
- * compared by removing elements from both ends:
+ * Characters are compared from the outer positions
+ * moving inward using recursive calls.
  *
- * - removeFirst()
- * - removeLast()
+ * The recursion stops when:
+ * - All characters are matched, or
+ * - A mismatch is found.
  *
- * This avoids reversing the string and provides an
- * efficient front-to-back comparison approach.
+ * This use case demonstrates divide-and-conquer
+ * logic using method recursion.
  *
  * @author Developer
- * @version 7.0
+ * @version 9.0
  */
 
-public class UseCase7PalindromeCheckerApp {
+import java.util.Scanner;
+
+public class UseCase9PalindromeCheckerApp {
 
     /**
-     * Application entry point for UC7.
-     *
+     * Application entry point for UC9.
      * @param args Command-line arguments
      */
     public static void main(String[] args) {
 
-        // Define the input string to validate
-        String input = "civic";
+        Scanner scanner = new Scanner(System.in);
 
-        // Create a Deque to store characters
-        Deque<Character> deque = new LinkedList<>();
+        System.out.print("Enter a string: ");
+        String input = scanner.nextLine();
 
-        // Insert each character into the deque
-        for (char c : input.toCharArray()) {
-            deque.addLast(c);
+        // Remove spaces and convert to lowercase (optional improvement)
+        String cleaned = input.replaceAll("\\s+", "").toLowerCase();
+
+        boolean result = check(cleaned, 0, cleaned.length() - 1);
+
+        if (result) {
+            System.out.println("The string is a Palindrome.");
+        } else {
+            System.out.println("The string is NOT a Palindrome.");
         }
 
-        // Flag to track palindrome status
-        boolean isPalindrome = true;
+        scanner.close();
+    }
 
-        // Compare characters from both ends
-        while (deque.size() > 1) {
-            char front = deque.removeFirst();
-            char rear = deque.removeLast();
+    /**
+     * Recursively checks whether a string is palindrome.
+     *
+     * @param s     Input string
+     * @param start Starting index
+     * @param end   Ending index
+     * @return true if palindrome, otherwise false
+     */
+    private static boolean check(String s, int start, int end) {
 
-            if (front != rear) {
-                isPalindrome = false;
-                break;
-            }
+        // Base condition: If start >= end, all characters matched
+        if (start >= end) {
+            return true;
         }
 
+        // If characters don't match → not palindrome
+        if (s.charAt(start) != s.charAt(end)) {
+            return false;
+        }
 
-
-        // Output result
-        System.out.println("Input : " + input);
-        System.out.println("Is Palindrome? : " + isPalindrome);
+        // Recursive call: move inward
+        return check(s, start + 1, end - 1);
     }
 }
