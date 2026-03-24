@@ -59,6 +59,8 @@ public class UseCase7PalindromeCheckerApp {
             }
         }
 
+
+
         // Output result
         System.out.println("Input : " + input);
         System.out.println("Is Palindrome? : " + isPalindrome);
